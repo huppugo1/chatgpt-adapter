@@ -1,6 +1,6 @@
 server:
   port: 8080
-  proxied: http://127.0.0.1:7890
+  proxied: http://127.0.0.1:7897
   password: '123456'
   think_reason: true
   debug: false
