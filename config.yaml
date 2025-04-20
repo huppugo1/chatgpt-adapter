@@ -1,0 +1,34 @@
+server:
+  port: 8080
+  proxied: http://127.0.0.1:7890
+  password: '123456'
+  think_reason: true
+  debug: false
+
+browser-less:
+  enabled: true
+  port: 8081
+  #reversal: http://127.0.0.1:8081
+  disabled-gpu: true
+  headless: new
+
+custom-llm:
+  - prefix: custom
+    proxied: true
+    reversal: https://models.inference.ai.azure.com
+  - prefix: grok
+    proxied: true
+    reversal: https://api.x.ai/v1
+
+matcher:
+  - match: I do not engage
+    over: ":\n"
+    notice:
+    regex: |
+      "(?i)I do not engage .+:\n":""
+  - match: <thinking>
+    over: </thinking>
+    notice:
+    think_reason: true
+    regex: |
+      "(?s)<thinking>(.+)</thinking>":"$1"
